@@ -23,8 +23,8 @@ export const isInMindboxSegment = (
   mindboxAnswer: MindboxAnswer
 ): boolean | undefined => {
   if (mindboxAnswer.customerSegmentations) {
-    const { segmentation } = mindboxAnswer.customerSegmentations[0];
-    if (segmentation) {
+    const { segment } = mindboxAnswer.customerSegmentations[0];
+    if (segment) {
       return true;
     } else {
       return false;
