@@ -67,22 +67,7 @@ export interface SettingsSplitsEntity {
   button_css: string;
 }
 export interface Settings1 {
-  link?: string | null;
-  image?: string | null;
-  img_same?: string | null;
-  align_mob?: string | null;
-  width_mob?: string | null;
-  action_url?: string | null;
-  align_desk?: string | null;
-  link_blank?: string | null;
-  width_desk?: string | null;
-  form_action?: string | null;
-  img_src_mob?: string | null;
-  img_src_desk?: string | null;
-  action_form_id?: string | null;
-  width_type_mob?: string | null;
-  width_type_desk?: string | null;
-  close_bg_show_desk?: string | null;
+  [key: string]: any;
 }
 export interface ButtonSettings {}
 export interface BehaviorSettings {
