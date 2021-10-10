@@ -1,0 +1,267 @@
+{
+  "contacts": [],
+  "geo": null,
+  "ip": "1.1.1.1",
+  "forms": [
+    {
+      "id": 31627,
+      "template": 1995,
+      "button_template": null,
+      "test_group": null,
+      "new_targeting": {
+        "filter": {
+          "id": "root",
+          "name": "root",
+          "nodes": [
+            {
+              "id": "2",
+              "field": "mindbox_segment",
+              "value": {
+                "auto": true,
+                "inSegment": true,
+                "operation": "popmechanic-check-segment-31627",
+                "segmentation": "74f45d0a-6f1e-4e77-bd9f-eefe9f4b43b0",
+                "inSegmentByDefault": false
+              },
+              "operator": "$check"
+            }
+          ],
+          "operator": "$and"
+        }
+      },
+      "settings_splits": [
+        {
+          "settings": {
+            "link": "https://mindbox.ru",
+            "image": "https://placekitten.com/480/480"
+          },
+          "button_settings": {},
+          "conditions_splits": [],
+          "id": 31215,
+          "behavior_settings": { "embedded": { "animation_out": "fadeOut" } },
+          "html": "",
+          "css": "",
+          "button_html": "",
+          "button_css": ""
+        }
+      ],
+      "pinned": false,
+      "name": "Встроенный блок #31627",
+      "active": true,
+      "embed_selector": false,
+      "selector": "",
+      "placement": "start",
+      "frequency": {
+        "once_lifetime": false,
+        "once_session": false,
+        "priority": false,
+        "minimal_timeout": null
+      },
+      "start_date": null,
+      "end_date": null,
+      "day_of_week": [true, true, true, true, true, true, true],
+      "start_time": null,
+      "end_time": null,
+      "timezone_minutes": 180,
+      "custom_fields": [],
+      "container_id": null,
+      "child_forms": []
+    },
+    {
+      "id": 31545,
+      "template": 1630,
+      "button_template": null,
+      "test_group": null,
+      "new_targeting": {
+        "filter": {
+          "id": "root",
+          "name": "root",
+          "nodes": [
+            {
+              "id": "2",
+              "field": "mindbox_segment",
+              "value": {
+                "auto": true,
+                "inSegment": true,
+                "operation": "popmechanic-check-segment-31545",
+                "segmentation": "fed6e820-45a8-4b8b-85d5-097e6ffbb2f6",
+                "inSegmentByDefault": false
+              },
+              "operator": "$check"
+            },
+            {
+              "id": "3",
+              "field": "mindbox_segment",
+              "value": {
+                "auto": true,
+                "inSegment": true,
+                "operation": "popmechanic-check-segment-31545",
+                "segmentation": "74f45d0a-6f1e-4e77-bd9f-eefe9f4b43b0",
+                "inSegmentByDefault": false
+              },
+              "operator": "$check"
+            }
+          ],
+          "operator": "$or"
+        }
+      },
+      "settings_splits": [
+        {
+          "settings": {
+            "img_same": "1",
+            "align_mob": "center",
+            "width_mob": "100",
+            "action_url": "https://app.popmechanic.io",
+            "align_desk": "center",
+            "link_blank": "1",
+            "width_desk": "200",
+            "form_action": "link",
+            "img_src_mob": "https://usermedia.popmechanic.ru/popmechanic-media/2521/c407904e96fda6a62541c53cb76c878d396b2cfedba277efe8b6807b91a281c5.png",
+            "img_src_desk": "https://ichef.bbci.co.uk/news/640/cpsprodpb/14A82/production/_116301648_gettyimages-1071204136.jpg",
+            "action_form_id": "0",
+            "width_type_mob": "free",
+            "width_type_desk": "free",
+            "close_bg_show_desk": "0"
+          },
+          "button_settings": {},
+          "conditions_splits": [],
+          "id": 31133,
+          "behavior_settings": { "embedded": { "animation_out": "fadeOut" } },
+          "html": "",
+          "css": "",
+          "button_html": "",
+          "button_css": ""
+        }
+      ],
+      "pinned": false,
+      "name": "Тестовый баннер",
+      "active": true,
+      "embed_selector": false,
+      "selector": "#result",
+      "placement": "start",
+      "frequency": {
+        "once_lifetime": false,
+        "once_session": false,
+        "priority": false,
+        "minimal_timeout": null
+      },
+      "start_date": null,
+      "end_date": null,
+      "day_of_week": [true, true, true, true, true, true, true],
+      "start_time": null,
+      "end_time": null,
+      "timezone_minutes": 180,
+      "custom_fields": [],
+      "container_id": null,
+      "child_forms": []
+    }
+  ],
+  "templates": [
+    {
+      "id": 1630,
+      "html": "<% try { close_show = close_show; } catch (e) { close_show = 0 } %>\r\n\r\n<div id=\"popmechanic-form\" class=\"popmechanic-embedded-static\">\r\n  <% if(form_action === \"link\") { %>\r\n    <a href=\"<%= action_url %>\"\r\n      <%= parseInt(link_blank) ? 'target=\"_blank\"' : '' %>\r\n      data-popmechanic-submit\r\n      data-popmechanic-close>\r\n  <% } %>\r\n  <% if(form_action === \"form\") { %>\r\n    <a\r\n      href=\"#\"\r\n      class=\"popmechanic-form-open\"\r\n      data-popmechanic-submit\r\n      data-popmechanic-close>\r\n  <% } %>\r\n  <% if(form_action === \"disabled\") { %>\r\n    <a data-popmechanic-submit>\r\n  <% } %>\r\n    <% if (desktop.toString() !== \"false\") { %>\r\n      <img src=\"<%= img_src_desk %>\" />\r\n    <% } else { %>\r\n      <img src=\"<%= parseInt(img_same) ? img_src_desk : img_src_mob %>\" />\r\n    <% } %>\r\n  </a>\r\n\r\n  <% if(parseInt(close_show)) { %>\r\n  <!-- CLOSE -->\r\n  <div class=\"popmechanic-close\"\r\n       data-popmechanic-close></div>\r\n  <% } %>\r\n\r\n</div>",
+      "css": "<% try {\r\n  close_show = close_show;\r\n  close_size_desk = close_size_desk;\r\n  close_size_mob = close_size_mob;\r\n  close_color_desk = close_color_desk;\r\n  close_color_mob = close_color_mob;\r\n  close_bg_show_desk = close_bg_show_desk;\r\n  close_bg_color_desk = close_bg_color_desk;\r\n  close_bg_show_mob = close_bg_show_mob;\r\n  close_bg_color_mob = close_bg_color_mob;\r\n  close_bg_transparency = close_bg_transparency;\r\n  } catch (e) { \r\n    close_show = 0\r\n    close_size_desk = 20\r\n    close_size_mob = 20\r\n    close_color_desk = '#000000'\r\n    close_color_mob = '#000000'\r\n    close_bg_show_desk = 0\r\n    close_bg_color_desk = '#000000'\r\n    close_bg_show_mob = 0\r\n    close_bg_color_mob = '#000000'\r\n    close_bg_transparency = 0.5\r\n   }\r\n%>\r\n\r\n#popmechanic-form.popmechanic-embedded-static {\r\n  position: relative;\r\n}\r\n\r\n#popmechanic-form.popmechanic-embedded-static img {\r\n  display: block;\r\n  width: 100%;\r\n  max-width: 100%;\r\n}\r\n.popmechanic-desktop #popmechanic-form.popmechanic-embedded-static {\r\n  width: <%= (width_type_desk === 'free') ? '100%' : width_desk + 'px' %>;\r\n  <% if(align_desk === 'left') { %>\r\n    margin-right: auto;\r\n  <% } else if(align_desk === 'right') { %>\r\n    margin-left: auto;\r\n  <% } else { %>\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n  <% } %>\r\n}\r\n.popmechanic-tablet #popmechanic-form.popmechanic-embedded-static,\r\n.popmechanic-mobile #popmechanic-form.popmechanic-embedded-static {\r\n  width: <%= (width_type_mob === 'free') ? '100%' : width_mob + 'px' %>;\r\n  <% if(align_mob === 'left') { %>\r\n    margin-right: auto;\r\n  <% } else if(align_mob === 'right') { %>\r\n    margin-left: auto;\r\n  <% } else { %>\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n  <% } %>\r\n}\r\n\r\n<% if(parseInt(close_show)) { %>\r\n  /* CLOSE */\r\n  <%\r\n    function hexToRgb(hex) {\r\n      return hex.replace(/^#?([a-f\\d])([a-f\\d])([a-f\\d])$/i, function (m, r, g, b) {\r\n        return \"#\".concat(r).concat(r).concat(g).concat(g).concat(b).concat(b);\r\n      }).substring(1).match(/.{2}/g).map(function (x) {\r\n        return parseInt(x, 16);\r\n      });\r\n    };\r\n  %>\r\n\r\n  #popmechanic-form .popmechanic-close {\r\n    position: absolute;\r\n    z-index: 40;\r\n    cursor: pointer;\r\n  }\r\n  #popmechanic-form .popmechanic-close::before,\r\n  #popmechanic-form .popmechanic-close::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    width: 80%;\r\n    height: 2px;\r\n    transform: translate(-50%, -50%) rotate(45deg);\r\n  }\r\n  #popmechanic-form .popmechanic-close::after {\r\n    transform: translate(-50%, -50%) rotate(135deg);\r\n  }\r\n  .popmechanic-desktop #popmechanic-form .popmechanic-close {\r\n    top: 10px;\r\n    right: 10px;\r\n    width: <%= close_size_desk %>px;\r\n    height: <%= close_size_desk %>px;\r\n    <% if(parseInt(close_bg_show_desk)) { %>\r\n      background-color: rgba(<%= hexToRgb(close_bg_color_desk) %>, <%= close_bg_transparency %>);\r\n    <% } %>\r\n  }\r\n  .popmechanic-desktop #popmechanic-form .popmechanic-close::before,\r\n  .popmechanic-desktop #popmechanic-form .popmechanic-close::after {\r\n    background-color: <%= close_color_desk %>;\r\n  }\r\n  .popmechanic-tablet #popmechanic-form .popmechanic-close,\r\n  .popmechanic-mobile #popmechanic-form .popmechanic-close {\r\n    top: 5px;\r\n    right: 5px;\r\n    width: <%= close_size_mob %>px;\r\n    height: <%= close_size_mob %>px;\r\n    <% if(parseInt(close_bg_show_mob)) { %>\r\n      background-color: rgba(<%= hexToRgb(close_bg_color_mob) %>, <%= close_bg_transparency %>);\r\n    <% } %>\r\n  }\r\n  .popmechanic-tablet #popmechanic-form .popmechanic-close::before,\r\n  .popmechanic-tablet #popmechanic-form .popmechanic-close::after,\r\n  .popmechanic-mobile #popmechanic-form .popmechanic-close::before,\r\n  .popmechanic-mobile #popmechanic-form .popmechanic-close::after {\r\n    background-color: <%= close_color_mob %>;\r\n  }\r\n<% } %>",
+      "button": "",
+      "on_show": "<% if (!!parseInt(action_form_id)) { %>\r\n\tPopMechanic.$('.popmechanic-form-open').on('click', function (e) {\r\n  \te.preventDefault();\r\n  \tsetTimeout(function(){PopMechanic.show(<%= action_form_id %>, true)}, 300);})\r\n<% } %>",
+      "on_close": "",
+      "embed_code": "",
+      "behaviors": ["info"],
+      "template_type": "embedded",
+      "need_reset": true,
+      "parameters": [],
+      "on_targeting_ready": "",
+      "on_child_ready": ""
+    },
+    {
+      "id": 1995,
+      "html": "<div id=\"popmechanic-form\">\r\n  <a href=\"<%=link%>\" target=\"_blank\">\r\n  \t<img src=\"<%=image%>\">\r\n  </a>\r\n</div>",
+      "css": "#popmechanic-form {}",
+      "button": "",
+      "on_show": "",
+      "on_close": "",
+      "embed_code": "",
+      "behaviors": ["info"],
+      "template_type": "embedded",
+      "need_reset": false,
+      "parameters": [],
+      "on_targeting_ready": "",
+      "on_child_ready": null
+    }
+  ],
+  "button_templates": [],
+  "integrations": [
+    {
+      "id": 17273,
+      "form": 30765,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_push",
+      "get_subscription_operation": "GetWebPushSubscription",
+      "subscribe_operation": "SubscribeToWebpush"
+    },
+    {
+      "id": 17274,
+      "form": 30765,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_tracking",
+      "show_operation": "popmechanic-popup-30765-show",
+      "click_operation": "popmechanic-popup-30765-click",
+      "targeting_operation": "popmechanic-popup-30765-targeting"
+    },
+    {
+      "id": 17555,
+      "form": 31091,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_tracking",
+      "show_operation": "popmechanic-block-31091-show",
+      "click_operation": "popmechanic-block-31091-click",
+      "targeting_operation": "popmechanic-block-31091-targeting"
+    },
+    {
+      "id": 17556,
+      "form": 31087,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_tracking",
+      "show_operation": "popmechanic-block-31087-show",
+      "click_operation": "popmechanic-block-31087-click",
+      "targeting_operation": "popmechanic-block-31087-targeting"
+    },
+    {
+      "id": 17877,
+      "form": 31545,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_tracking",
+      "show_operation": "popmechanic-block-31545-show",
+      "click_operation": "popmechanic-block-31545-click",
+      "targeting_operation": "popmechanic-block-31545-targeting"
+    },
+    {
+      "id": 17942,
+      "form": 31627,
+      "filter": null,
+      "filter_type": null,
+      "account": 29836,
+      "integration_type": "mindbox_tracking",
+      "show_operation": "popmechanic-block-31627-show",
+      "click_operation": "popmechanic-block-31627-click",
+      "targeting_operation": "popmechanic-block-31627-targeting"
+    }
+  ],
+  "settings": { "hide_copyright": true, "premium": true },
+  "frequency": {
+    "minimal_timeout": null,
+    "session": null,
+    "day": null,
+    "week": null,
+    "month": null
+  }
+}
