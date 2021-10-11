@@ -1,8 +1,8 @@
-import { Button, Card, Col, Form, Input, Row, Typography } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import React, { useState } from "react";
-import { FormsEntity } from "./forms-declaration";
+import { FormsEntity } from "forms-declaration";
 
-import getFormsInfo from "./utils/getFormsInfo";
+import getFormsInfo from "shared/api/getFormsInfo";
 
 type FormState = {
   id: string;
@@ -13,7 +13,7 @@ type GetFormsInfoProps = {
   updateFormsInfo: React.Dispatch<React.SetStateAction<FormsEntity[]>>;
 };
 
-const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
+export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
   const [formState, setFormState] = useState<FormState>({
     id: "",
     domain: "",
@@ -69,4 +69,4 @@ const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
   );
 };
 
-export default GetFormsInfo;
+

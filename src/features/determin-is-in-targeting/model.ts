@@ -1,7 +1,7 @@
-import { NodesEntity } from "../forms-declaration";
-import { MindboxAnswer } from "../mindbox-declarations";
+import { NodesEntity } from "forms-declaration";
+import { MindboxAnswer } from "mindbox-declarations";
 
-const determineIsInTargeting = (
+export const determineIsInTargeting = (
   targetingSettings: NodesEntity,
   mindboxAnswer: any
 ): boolean => {
@@ -34,4 +34,3 @@ export const isInMindboxSegment = (
   return undefined;
 };
 
-export default determineIsInTargeting;

@@ -1,7 +1,7 @@
 import getFormsInfo from "./getFormsInfo";
 import axios from "axios";
 
-import mockAnswer from "./mockFormsAnswer.json";
+import mockAnswer from "shared/config/mockFormsAnswer.json";
 
 jest.mock("axios");
 const prepareMock = (answer: any) => {

@@ -1,6 +1,6 @@
-import determineIsInTargeting, {
-  isInMindboxSegment,
-} from "./determineIsInTargeting";
+import  {
+  isInMindboxSegment, determineIsInTargeting
+} from "features/determin-is-in-targeting";
 
 const mockInMindboxSegment = {
   status: "Success",
@@ -24,7 +24,7 @@ const mockNotInMindboxSegment = {
   status: "Success",
   customerSegmentations: [
     {
-      segment: {
+      segmentation: {
         ids: {
           externalId: "fed6e820-45a8-4b8b-85d5-097e6ffbb2f6",
         },
