@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "antd/dist/antd.css";
 
 import { Row, Col, Skeleton, Steps, PageHeader } from "antd";
 
 import "html5-device-mockups/dist/device-mockups.css";
-import GetFormsInfo from "./GetFormsInfo";
-import { FormsEntity } from "./forms-declaration";
-import Forms from "./Forms";
+import GetFormsInfo from "GetFormsInfo";
+import { FormsEntity } from "forms-declaration";
+import Forms from "Forms";
 
 declare global {
   interface Window {
