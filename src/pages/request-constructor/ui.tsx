@@ -1,8 +1,8 @@
 import { Button, Form, Input, Typography } from "antd";
 import React, { useState } from "react";
-import { FormsEntity } from "forms-declaration";
+import { FormsEntity } from "shared/api/get-personalization-data/model";
 
-import getFormsInfo from "shared/api/getFormsInfo";
+import { getData } from "shared/api/get-personalization-data";
 
 type FormState = {
   id: string;
@@ -19,7 +19,7 @@ export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
     domain: "",
   });
   const onFinish = (values: any) => {
-    getFormsInfo(formState.id, formState.domain)
+    getData(formState.id, formState.domain)
       .then((data) => {
         console.log("Success:", data);
         if (data) {
@@ -68,5 +68,3 @@ export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
     </div>
   );
 };
-
-
