@@ -1,4 +1,6 @@
-import { FormsEntity } from "forms-declaration";
+import { FormsEntity } from "shared/api/get-personalization-data/model";
+
+
 
 export const parseFormInfo = (form: FormsEntity) => {
   const targeting = form.new_targeting.filter.nodes;

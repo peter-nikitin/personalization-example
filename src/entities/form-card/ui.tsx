@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormsEntity } from "forms-declaration";
+import { FormsEntity } from "shared/api/get-personalization-data/model";
 import { determineIsInTargeting } from "features/determin-is-in-targeting";
 import { parseFormInfo } from "features/parse-personalization-info";
 import checkMindboxSegment from "shared/api/checkMindboxSegment";
