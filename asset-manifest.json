@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/personalization-example/static/css/main.7a0b55c9.chunk.css",
+    "main.js": "/personalization-example/static/js/main.d05af72d.chunk.js",
+    "main.js.map": "/personalization-example/static/js/main.d05af72d.chunk.js.map",
+    "runtime-main.js": "/personalization-example/static/js/runtime-main.b75df8cb.js",
+    "runtime-main.js.map": "/personalization-example/static/js/runtime-main.b75df8cb.js.map",
+    "static/css/2.ec4068e4.chunk.css": "/personalization-example/static/css/2.ec4068e4.chunk.css",
+    "static/js/2.c2330209.chunk.js": "/personalization-example/static/js/2.c2330209.chunk.js",
+    "static/js/2.c2330209.chunk.js.map": "/personalization-example/static/js/2.c2330209.chunk.js.map",
+    "index.html": "/personalization-example/index.html",
+    "static/css/2.ec4068e4.chunk.css.map": "/personalization-example/static/css/2.ec4068e4.chunk.css.map",
+    "static/css/main.7a0b55c9.chunk.css.map": "/personalization-example/static/css/main.7a0b55c9.chunk.css.map",
+    "static/js/2.c2330209.chunk.js.LICENSE.txt": "/personalization-example/static/js/2.c2330209.chunk.js.LICENSE.txt",
+    "static/media/device-mockups.css": "/personalization-example/static/media/portrait_white.f17d0a11.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b75df8cb.js",
+    "static/css/2.ec4068e4.chunk.css",
+    "static/js/2.c2330209.chunk.js",
+    "static/css/main.7a0b55c9.chunk.css",
+    "static/js/main.d05af72d.chunk.js"
+  ]
+}
