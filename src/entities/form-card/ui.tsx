@@ -3,7 +3,7 @@ import { useState } from "react";
 import { determineIsInTargeting } from "processes/determin-is-in-targeting";
 import { parseFormInfo } from "features/parse-personalization-info";
 import { checkMindboxSegment } from "processes/check-mindbox-segment";
-import { Button, Card, Descriptions } from "antd";
+import { Badge, Button, Card, Descriptions } from "antd";
 
 import { FormCardProps } from "./model";
 
@@ -62,21 +62,38 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
       title={formInfo.name}
       actions={[checkSegmentButton(), showInResultBtn()]}
     >
-      <Descriptions>
-        <Descriptions.Item label="Поле таргетинга" span={3}>
+      <Descriptions bordered size="small">
+        <Descriptions.Item label="Тип таргетинга" span={3}>
           {targeting && targeting[0].field}
         </Descriptions.Item>
+
+        {targeting && targeting[0].field === "mindbox_segment" && (
+          <>
+          <Descriptions.Item label="Должен быть в сегменте" span={3}>
+            {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
+          </Descriptions.Item>
+          <Descriptions.Item label="Что делать, если не нашли клиента" span={3}>
+            {targeting && targeting[0].value.inSegmentByDefault ? "Показывать" : "Не показывать"}
+          </Descriptions.Item>
+          </>
+        )}
         {segmentState !== null && (
           <>
             <Descriptions.Item label="Статус сегмента клиента" span={3}>
-              {segmentState === undefined
-                ? "Не найден в Mindbox"
-                : segmentState
-                ? "В сегменте"
-                : "Не в сегменте"}
+              {segmentState === undefined ? (
+                <Badge status="warning" text="Не найден в Mindbox" />
+              ) : segmentState ? (
+                <Badge status="success" text="В сегменте" />
+              ) : (
+                <Badge status="error" text="Не в сегменте" />
+              )}
             </Descriptions.Item>
             <Descriptions.Item label="Попадает в таргетинг" span={3}>
-              {isInTargeting ? "Попадает" : "Не попадает"}
+              {isInTargeting ? (
+                <Badge status="success" text="Попадает" />
+              ) : (
+                <Badge status="error" text="Не попадает" />
+              )}
             </Descriptions.Item>
           </>
         )}
