@@ -1,5 +1,5 @@
 import { Row, Typography } from "antd";
-import { FormsEntity } from "shared/api/get-personalization-data/model";
+import { FormsEntity } from "processes/get-personalization-data/model";
 import { FormCard } from "entities/form-card";
 import { TogglePreviewMode } from "features/toggle-preview";
 import { PREVIEW_MODS } from "features/toggle-preview/model";

@@ -1,4 +1,4 @@
-import {  FormsEntity } from "shared/api/get-personalization-data";
+import {  FormsEntity } from "processes/get-personalization-data";
 
 export type PersonalizationData = FormsEntity[];
 

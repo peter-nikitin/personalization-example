@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Row, Col, PageHeader } from "antd";
 
 import { GetFormsInfo, PersonalizationData } from "pages/request-constructor";
-import { FormsEntity } from "shared/api/get-personalization-data/model";
+import { FormsEntity } from "processes/get-personalization-data/model";
 
 import { ResultView } from "./result-view";
 import { StepsIndicator } from "entities/steps-indicator";
 
-import { Forms } from "shared/api/get-personalization-data";
+import { Forms } from "processes/get-personalization-data";
 import { PersonalizationPreview } from "./preview-of-forms";
 
 const PersonalizationTester = () => {

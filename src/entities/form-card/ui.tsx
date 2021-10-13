@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FormsEntity } from "shared/api/get-personalization-data/model";
+import { FormsEntity } from "processes/get-personalization-data/model";
 import { determineIsInTargeting } from "features/determin-is-in-targeting";
 import { parseFormInfo } from "features/parse-personalization-info";
-import checkMindboxSegment from "shared/api/checkMindboxSegment";
+import { checkMindboxSegment } from "processes/check-mindbox-segment";
 import { Card, Col } from "antd";
 
 type FormProps = {

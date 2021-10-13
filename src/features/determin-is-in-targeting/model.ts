@@ -1,4 +1,4 @@
-import { NodesEntity } from "shared/api/get-personalization-data/model";
+import { NodesEntity } from "processes/get-personalization-data/model";
 import { MindboxAnswer } from "mindbox-declarations";
 
 export const determineIsInTargeting = (

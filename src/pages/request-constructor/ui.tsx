@@ -1,7 +1,7 @@
 import { Button, Form, Input, Typography } from "antd";
 import { useState } from "react";
 
-import { getData } from "shared/api/get-personalization-data";
+import { getData } from "processes/get-personalization-data";
 import { FormState, GetFormsInfoProps } from "./model";
 
 

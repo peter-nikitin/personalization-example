@@ -1,4 +1,4 @@
-import { FormsEntity } from "shared/api/get-personalization-data/model";
+import { FormsEntity } from "processes/get-personalization-data/model";
 
 
 
