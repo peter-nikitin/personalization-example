@@ -1,29 +1,35 @@
 import { Row, Typography } from "antd";
-import { FormsEntity } from "processes/get-personalization-data/model";
 import { FormCard } from "entities/form-card";
 import { TogglePreviewMode } from "features/toggle-preview";
 import { PREVIEW_MODS } from "features/toggle-preview/model";
-import React, { useState } from "react";
+import { useState } from "react";
+import { PreviewRaw } from "entities/preview-raw";
+import { FormsProps } from "./model";
 
-type FormsProps = {
-  forms: FormsEntity[];
-};
 
-export const PersonalizationPreview = ({ forms }: FormsProps) => {
+
+export const PersonalizationPreview = ({ forms, showResult }: FormsProps) => {
   const { Title } = Typography;
 
-  const [previewMode, setPeviewMode] = useState(PREVIEW_MODS.parsed);
-  //TODO: add toggler to component
-  //TODO: add preview of raw content
+  const [previewMode, setPreviewMode] = useState(PREVIEW_MODS.parsed);
+
   return (
     <div>
       <Title level={4}>Настроенные формы</Title>
-      <TogglePreviewMode changeMode={setPeviewMode} currentMode={previewMode} />
-      <Row gutter={16} wrap={true}>
-        {forms.map((form) => (
-          <FormCard key={form.id} formInfo={form} />
-        ))}
-      </Row>
+      <TogglePreviewMode
+        changeMode={setPreviewMode}
+        currentMode={previewMode}
+      />
+
+      {previewMode === PREVIEW_MODS.parsed ? (
+        <Row gutter={16} wrap={true}>
+          {forms.map((form) => (
+            <FormCard key={form.id} formInfo={form} showInResult={showResult} />
+          ))}
+        </Row>
+      ) : (
+        <PreviewRaw rawData={forms} />
+      )}
     </div>
   );
 };
