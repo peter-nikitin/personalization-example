@@ -2,21 +2,22 @@ import { useState } from "react";
 
 import { Row, Col, PageHeader } from "antd";
 
-import { GetFormsInfo } from "pages/request-constructor";
+import { GetFormsInfo, PersonalizationData } from "pages/request-constructor";
 import { FormsEntity } from "shared/api/get-personalization-data/model";
 
-import ResultView from "./result-view/ui";
+import { ResultView } from "./result-view";
 import { StepsIndicator } from "entities/steps-indicator";
 
 import { Forms } from "shared/api/get-personalization-data";
+import { PersonalizationPreview } from "./preview-of-forms";
 
 const PersonalizationTester = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
 
-  const [personalizationData, setPersonalizationData] = useState<{
-    parsed: FormsEntity[];
-    raw: Forms;
-  }>();
+  const [personalizationData, setPersonalizationData] =
+    useState<PersonalizationData>([]);
+  
+  //TODO: add switched between steps 
 
   return (
     <div>
@@ -34,8 +35,10 @@ const PersonalizationTester = () => {
               <StepsIndicator currentStep={currentStep} />
             </Col>
             <Col span={16}>
-              <GetFormsInfo updateFormsInfo={setForms} />
-              {forms && <Forms forms={forms} />}
+              <GetFormsInfo updateFormsInfo={setPersonalizationData} />
+              {personalizationData && (
+                <PersonalizationPreview forms={personalizationData} />
+              )}
             </Col>
           </Row>
         </Col>
