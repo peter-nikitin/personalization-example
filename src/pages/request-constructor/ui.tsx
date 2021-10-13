@@ -1,17 +1,10 @@
 import { Button, Form, Input, Typography } from "antd";
-import React, { useState } from "react";
-import { FormsEntity } from "shared/api/get-personalization-data/model";
+import { useState } from "react";
 
 import { getData } from "shared/api/get-personalization-data";
+import { FormState, GetFormsInfoProps } from "./model";
 
-type FormState = {
-  id: string;
-  domain: string;
-};
 
-type GetFormsInfoProps = {
-  updateFormsInfo: React.Dispatch<React.SetStateAction<FormsEntity[]>>;
-};
 
 export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
   const [formState, setFormState] = useState<FormState>({
