@@ -1,41 +1,4 @@
-import  {
-  isInMindboxSegment, determineIsInTargeting
-} from "features/determin-is-in-targeting";
-
-const mockInMindboxSegment = {
-  status: "Success",
-  customerSegmentations: [
-    {
-      segmentation: {
-        ids: {
-          externalId: "fed6e820-45a8-4b8b-85d5-097e6ffbb2f6",
-        },
-      },
-      segment: {
-        ids: {
-          externalId: "fed6e820-45a8-4b8b-85d5-097e6ffbb2f6",
-        },
-      },
-    },
-  ],
-};
-
-const mockNotInMindboxSegment = {
-  status: "Success",
-  customerSegmentations: [
-    {
-      segmentation: {
-        ids: {
-          externalId: "fed6e820-45a8-4b8b-85d5-097e6ffbb2f6",
-        },
-      },
-    },
-  ],
-};
-
-const mockNoMindboxUser = {
-  status: "Success",
-};
+import { determineIsInTargeting } from "./";
 
 type createTargetingSettingsArgs = {
   inSegment: boolean;
@@ -58,17 +21,6 @@ const createTargetingSettings = ({
   operator: "$check",
 });
 
-describe("Test of inMindboxSegment function", () => {
-  test("should return TRUE if in segment", () => {
-    expect(isInMindboxSegment(mockInMindboxSegment)).toBe(true);
-  });
-  test("should return false if NOT in segment", () => {
-    expect(isInMindboxSegment(mockNotInMindboxSegment)).toBe(false);
-  });
-  test("should return undefined if customer not fund", () => {
-    expect(isInMindboxSegment(mockNoMindboxUser)).toBe(undefined);
-  });
-});
 
 describe("isInTargeting should return TRUE", () => {
   test("inSegment true and In Mindbox Segment", async () => {
@@ -77,7 +29,7 @@ describe("isInTargeting should return TRUE", () => {
         inSegment: true,
         inSegmentByDefault: true,
       }),
-      mockInMindboxSegment
+      true
     );
 
     expect(isInTargeting).toBe(true);
@@ -89,7 +41,7 @@ describe("isInTargeting should return TRUE", () => {
         inSegment: false,
         inSegmentByDefault: true,
       }),
-      mockNotInMindboxSegment
+      false
     );
 
     expect(isInTargeting).toBe(true);
@@ -101,7 +53,7 @@ describe("isInTargeting should return TRUE", () => {
         inSegment: true,
         inSegmentByDefault: true,
       }),
-      mockNoMindboxUser
+      undefined
     );
 
     expect(isInTargeting).toBe(true);
@@ -115,7 +67,7 @@ describe("isInTargeting should return FALSE", () => {
         inSegment: false,
         inSegmentByDefault: true,
       }),
-      mockInMindboxSegment
+      true
     );
 
     expect(isInTargeting).toBe(false);
@@ -127,7 +79,7 @@ describe("isInTargeting should return FALSE", () => {
         inSegment: true,
         inSegmentByDefault: true,
       }),
-      mockNotInMindboxSegment
+      false
     );
 
     expect(isInTargeting).toBe(false);
@@ -139,7 +91,7 @@ describe("isInTargeting should return FALSE", () => {
         inSegment: true,
         inSegmentByDefault: false,
       }),
-      mockNoMindboxUser
+      undefined
     );
 
     expect(isInTargeting).toBe(false);
