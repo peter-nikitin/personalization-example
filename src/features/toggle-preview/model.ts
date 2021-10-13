@@ -7,6 +7,6 @@ export type TogglePreviewModeProps = {
 };
 
 export const PREVIEW_MODS = {
-  parsed: "parsed",
-  raw: "raw",
+  parsed: "Карточки",
+  raw: "Исходный код",
 };
