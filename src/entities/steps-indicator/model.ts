@@ -2,9 +2,19 @@ export type StepsIndicatorProps = {
   currentStep: number;
 };
 
-export const steps = [
+export const STEPS = [
   {
-    name: "",
-    title: "",
+    title: "Получить формы",
+    description: "Получить список настроенных форм, выполнив GET запрос",
+  },
+  {
+    title: "Проверить таргетинг",
+    description:
+      "Если использован таргетинг по сегменту, проверьте принадлежит ли клиент к нужному",
+  },
+  {
+    title: "Отобразите формы",
+    description:
+      "Если пользователь подходит под условия, надо отобразить ему настроенный контент",
   },
 ];
