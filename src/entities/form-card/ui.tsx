@@ -1,37 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { FormsEntity } from "processes/get-personalization-data/model";
-import { determineIsInTargeting } from "features/determin-is-in-targeting";
+import React, { useState } from "react";
+
+import { determineIsInTargeting } from "processes/determin-is-in-targeting";
 import { parseFormInfo } from "features/parse-personalization-info";
 import { checkMindboxSegment } from "processes/check-mindbox-segment";
 import { Card, Col } from "antd";
 
-type FormProps = {
-  formInfo: FormsEntity;
-};
+import { AimOutlined, DesktopOutlined } from "@ant-design/icons";
+import { FormCardProps } from "./model";
 
-export const FormCard = ({ formInfo }: FormProps) => {
+export const FormCard = ({ formInfo, showInResult }: FormCardProps) => {
   const [isInTargeting, setIsInTargeting] = useState<boolean>(false);
   const { targeting, views } = parseFormInfo(formInfo);
 
-  useEffect(() => {
+  const [segmentState, setSegmentState] = useState<boolean | undefined>();
+
+  const handleCheckSegment = () => {
     if (targeting) {
-      checkMindboxSegment(
-        targeting[0].value.segmentation,
-        targeting[0].value.operation
-      ).then((data) => {
-        setIsInTargeting(determineIsInTargeting(targeting[0], data));
-        console.log(determineIsInTargeting(targeting[0], data));
+      const [firstTargetingNode, ...rest] = targeting;
+
+      const { segmentation, operation } = firstTargetingNode.value;
+
+      checkMindboxSegment(segmentation, operation).then((result) => {
+        setSegmentState(result);
+        setIsInTargeting(determineIsInTargeting(firstTargetingNode, result));
       });
     }
-  }, [formInfo]);
+  };
 
   return (
     <Col span={14} key={formInfo.id}>
-      <Card title={formInfo.name} bordered={false}>
+      <Card
+        title={formInfo.name}
+        bordered={false}
+        actions={[
+          <AimOutlined key="checkSegment" onClick={handleCheckSegment} />,
+          <DesktopOutlined
+            key="showINResult"
+            onClick={() => showInResult(views.image)}
+          />,
+        ]}
+      >
         Field: {targeting && targeting[0].field} <br />
         Segmentation: {targeting && targeting[0].value.segmentation}
+        Segmentation status:{" "}
+        {segmentState === undefined
+          ? "Не найден в Mindbox"
+          : segmentState
+          ? "В сегменте"
+          : "Не в сегменте"}
         <br />
-        Status: {isInTargeting!.toString()}
+        Is in targeting: {isInTargeting!.toString()}
       </Card>
     </Col>
   );
