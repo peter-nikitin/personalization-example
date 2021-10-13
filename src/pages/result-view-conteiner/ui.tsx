@@ -1,9 +1,10 @@
-import { Skeleton } from 'antd';
-import React from 'react'
+import { Skeleton } from "antd";
+import React from "react";
 import "html5-device-mockups/dist/device-mockups.css";
+import { ResultViewContenerProps } from ".";
+import { SimpleInlineBanner } from "entities/result-vews";
 
-
-export const ResultView = () => {
+export const ResultView = ({ bannerImageUrl }: ResultViewContenerProps) => {
   return (
     <div>
       <div className="device-wrapper">
@@ -18,6 +19,8 @@ export const ResultView = () => {
             style={{ backgroundColor: "white", padding: "15px 10px" }}
           >
             <Skeleton />
+
+            {bannerImageUrl && <SimpleInlineBanner url={bannerImageUrl} />}
           </div>
           <div className="button">
             {/* <!-- You can hook the "home button" to some JavaScript events or just remove it --> */}
@@ -26,5 +29,4 @@ export const ResultView = () => {
       </div>
     </div>
   );
-}
-
+};
