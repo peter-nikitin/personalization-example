@@ -3,7 +3,7 @@ import React from 'react'
 import "html5-device-mockups/dist/device-mockups.css";
 
 
-const ResultView = () => {
+export const ResultView = () => {
   return (
     <div>
       <div className="device-wrapper">
@@ -28,4 +28,3 @@ const ResultView = () => {
   );
 }
 
-export default ResultView;
