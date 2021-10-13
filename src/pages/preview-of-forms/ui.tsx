@@ -1,4 +1,4 @@
-import { Row, Typography } from "antd";
+import { Space, Typography } from "antd";
 import { FormCard } from "entities/form-card";
 import { TogglePreviewMode } from "features/toggle-preview";
 import { PREVIEW_MODS } from "features/toggle-preview/model";
@@ -8,13 +8,13 @@ import { FormsProps } from "./model";
 
 
 
-export const PersonalizationPreview = ({ forms, showResult }: FormsProps) => {
+export const PersonalizationPreview = ({ forms, showResult, nextStep }: FormsProps) => {
   const { Title } = Typography;
 
   const [previewMode, setPreviewMode] = useState(PREVIEW_MODS.parsed);
 
   return (
-    <div>
+    <Space direction="vertical">
       <Title level={4}>Настроенные формы</Title>
       <TogglePreviewMode
         changeMode={setPreviewMode}
@@ -22,14 +22,19 @@ export const PersonalizationPreview = ({ forms, showResult }: FormsProps) => {
       />
 
       {previewMode === PREVIEW_MODS.parsed ? (
-        <Row gutter={16} wrap={true}>
+        <Space direction="vertical">
           {forms.map((form) => (
-            <FormCard key={form.id} formInfo={form} showInResult={showResult} />
+            <FormCard
+              key={form.id}
+              formInfo={form}
+              showInResult={showResult}
+              nextStep={nextStep}
+            />
           ))}
-        </Row>
+        </Space>
       ) : (
         <PreviewRaw rawData={forms} />
       )}
-    </div>
+    </Space>
   );
 };

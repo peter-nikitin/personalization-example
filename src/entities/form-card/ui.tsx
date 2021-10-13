@@ -1,56 +1,86 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { determineIsInTargeting } from "processes/determin-is-in-targeting";
 import { parseFormInfo } from "features/parse-personalization-info";
 import { checkMindboxSegment } from "processes/check-mindbox-segment";
-import { Card, Col } from "antd";
+import { Button, Card, Descriptions } from "antd";
 
-import { AimOutlined, DesktopOutlined } from "@ant-design/icons";
 import { FormCardProps } from "./model";
 
-export const FormCard = ({ formInfo, showInResult }: FormCardProps) => {
+export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) => {
   const [isInTargeting, setIsInTargeting] = useState<boolean>(false);
   const { targeting, views } = parseFormInfo(formInfo);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [segmentState, setSegmentState] = useState<boolean | undefined>();
+  const [segmentState, setSegmentState] = useState<boolean | undefined | null>(
+    null
+  );
 
-  const handleCheckSegment = () => {
+  const handleCheckSegment = async () => {
+    nextStep(); 
     if (targeting) {
-      const [firstTargetingNode, ...rest] = targeting;
+      const [firstTargetingNode] = targeting;
 
       const { segmentation, operation } = firstTargetingNode.value;
+      setIsLoading(true);
 
-      checkMindboxSegment(segmentation, operation).then((result) => {
-        setSegmentState(result);
-        setIsInTargeting(determineIsInTargeting(firstTargetingNode, result));
-      });
+      const result = await checkMindboxSegment(segmentation, operation);
+      setSegmentState(result);
+
+      const isInTargeting = determineIsInTargeting(firstTargetingNode, result);
+      setIsInTargeting(isInTargeting);
+
+      setIsLoading(false);
     }
   };
 
+  const checkSegmentButton = () => (
+    <Button
+      type="link"
+      loading={isLoading}
+      size="small"
+      key="checkSegment"
+      onClick={handleCheckSegment}
+    >
+      Проверить сегмент
+    </Button>
+  );
+  const showInResultBtn = () => (
+    <Button
+      type="link"
+      size="small"
+      key="showINResult"
+      disabled={!isInTargeting}
+      onClick={() => showInResult(views.image)}
+    >
+      Показать
+    </Button>
+  );
+
   return (
-    <Col span={14} key={formInfo.id}>
-      <Card
-        title={formInfo.name}
-        bordered={false}
-        actions={[
-          <AimOutlined key="checkSegment" onClick={handleCheckSegment} />,
-          <DesktopOutlined
-            key="showINResult"
-            onClick={() => showInResult(views.image)}
-          />,
-        ]}
-      >
-        Field: {targeting && targeting[0].field} <br />
-        Segmentation: {targeting && targeting[0].value.segmentation}
-        Segmentation status:{" "}
-        {segmentState === undefined
-          ? "Не найден в Mindbox"
-          : segmentState
-          ? "В сегменте"
-          : "Не в сегменте"}
-        <br />
-        Is in targeting: {isInTargeting!.toString()}
-      </Card>
-    </Col>
+    <Card
+      title={formInfo.name}
+      actions={[checkSegmentButton(), showInResultBtn()]}
+    >
+      <Descriptions>
+        <Descriptions.Item label="Поле таргетинга" span={3}>
+          {targeting && targeting[0].field}
+        </Descriptions.Item>
+        {segmentState !== null && (
+          <>
+            <Descriptions.Item label="Статус сегмента клиента" span={3}>
+              {segmentState === undefined
+                ? "Не найден в Mindbox"
+                : segmentState
+                ? "В сегменте"
+                : "Не в сегменте"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Попадает в таргетинг" span={3}>
+              {isInTargeting ? "Попадает" : "Не попадает"}
+            </Descriptions.Item>
+          </>
+        )}
+      </Descriptions>
+    </Card>
   );
 };

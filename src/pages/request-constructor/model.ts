@@ -9,4 +9,5 @@ export type FormState = {
 
 export type GetFormsInfoProps = {
   updateFormsInfo: React.Dispatch<React.SetStateAction<PersonalizationData>>;
+  nextStep: () => void; 
 };

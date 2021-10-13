@@ -4,9 +4,10 @@ import { useState } from "react";
 import { getData } from "processes/get-personalization-data";
 import { FormState, GetFormsInfoProps } from "./model";
 
-
-
-export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
+export const GetFormsInfo = ({
+  updateFormsInfo,
+  nextStep,
+}: GetFormsInfoProps) => {
   const [formState, setFormState] = useState<FormState>({
     id: "",
     domain: "",
@@ -19,7 +20,8 @@ export const GetFormsInfo = ({ updateFormsInfo }: GetFormsInfoProps) => {
           updateFormsInfo(data);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => nextStep());
   };
 
   const { Text, Title } = Typography;
