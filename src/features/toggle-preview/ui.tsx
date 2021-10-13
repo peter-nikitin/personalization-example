@@ -5,5 +5,6 @@ export const TogglePreviewMode = ({
   changeMode,
   currentMode,
 }: TogglePreviewModeProps) => {
+  //TODO: add toggler UI
   return <div></div>;
 };

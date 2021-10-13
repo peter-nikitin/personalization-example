@@ -9,11 +9,12 @@ type FormsProps = {
   forms: FormsEntity[];
 };
 
-export const Forms = ({ forms }: FormsProps) => {
+export const PersonalizationPreview = ({ forms }: FormsProps) => {
   const { Title } = Typography;
 
   const [previewMode, setPeviewMode] = useState(PREVIEW_MODS.parsed);
-
+  //TODO: add toggler to component
+  //TODO: add preview of raw content
   return (
     <div>
       <Title level={4}>Настроенные формы</Title>
