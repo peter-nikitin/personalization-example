@@ -14,6 +14,8 @@
     "ace-builds": "^1.4.13",
     "antd": "^4.16.13",
     "axios": "^0.22.0",
+    "effector": "^22.1.2",
+    "effector-react": "^22.0.4",
     "html5-device-mockups": "^3.2.1",
     "react": "^17.0.2",
     "react-ace": "^9.4.4",
