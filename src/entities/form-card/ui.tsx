@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { determineIsInTargeting } from "processes/determin-is-in-targeting";
-import { parseFormInfo } from "features/parse-personalization-info";
+import { parseFormInfo } from "processes/parse-personalization-info";
 import { checkMindboxSegment } from "processes/check-mindbox-segment";
 import { Badge, Button, Card, Descriptions } from "antd";
 
