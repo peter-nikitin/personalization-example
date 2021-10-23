@@ -1,3 +1,7 @@
+import { RequestConstructor } from "pages/request-constructor";
+
+export type GetData = (arg0: RequestConstructor) => Promise<FormsEntity[]>;
+
 export interface Forms {
   contacts?: null[] | null;
   geo?: null;
