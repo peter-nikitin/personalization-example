@@ -8,6 +8,7 @@ import { ResultView, ShowResult } from "./result-view-conteiner";
 import { StepsIndicator } from "entities/steps-indicator";
 
 import { PersonalizationPreview } from "./preview-of-forms";
+import { Header } from "shared/header";
 
 const PersonalizationTester = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -39,6 +40,7 @@ const PersonalizationTester = () => {
               <StepsIndicator currentStep={currentStep} />
             </Col>
             <Col flex="3">
+              <Header />
               {currentStep === 0 && <GetFormsInfo />}
 
               {(currentStep === 1 || currentStep === 2) &&

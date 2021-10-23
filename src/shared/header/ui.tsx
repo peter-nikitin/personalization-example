@@ -1,15 +1,17 @@
-import { Button, PageHeader } from "antd";
+import { PageHeader } from "antd";
+import { useStore } from "effector-react";
+import { $stepData, prevStep } from "entities/steps-indicator/model";
 import { GetUpdatedData } from "features/get-update-data";
-import React from "react";
-import { HeaderProps } from "./model";
 
-export const Header = ({getBack, onBtnClick, title} : HeaderProps) => {
+export const Header = () => {
+  const step = useStore($stepData);
+
   return (
     <PageHeader
       ghost={false}
-      onBack={getBack}
-      title={title}
-      extra={[<GetUpdatedData getUpdatedData={onBtnClick} />]}
+      // onBack={() => prevStep()}
+      title={step.title}
+      extra={[<GetUpdatedData />]}
     />
   );
 };
