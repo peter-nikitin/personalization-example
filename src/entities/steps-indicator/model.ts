@@ -24,16 +24,9 @@ export type StepsIndicatorProps = {
 export const $stepIndex = createStore<number>(0);
 export const $stepData = $stepIndex.map((currentStep) => STEPS[currentStep]);
 
-export const nextStep = createEvent();
-export const prevStep = createEvent();
+export const setStep = createEvent<number>();
 
-$stepIndex
-  .on(nextStep, (currentStep) =>
-    currentStep < STEPS.length ? currentStep + 1 : currentStep
-  )
-  .on(prevStep, (currentStep) =>
-    currentStep > 0 ? currentStep + 1 : currentStep
-  );
+$stepIndex.on(setStep, (currentStep, targetStep) => targetStep);
 
 type StepData = {
   title: string;

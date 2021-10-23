@@ -1,12 +1,14 @@
-import React from "react";
 import { Steps } from "antd";
-import { StepsIndicatorProps, STEPS } from "./model";
+import { STEPS, $stepIndex } from "./model";
+import { useStore } from "effector-react";
 
-export const StepsIndicator = ({ currentStep }: StepsIndicatorProps) => {
+export const StepsIndicator = () => {
   const { Step } = Steps;
 
+  const stepIndex = useStore($stepIndex);
+
   return (
-    <Steps direction="vertical" current={currentStep}>
+    <Steps direction="vertical" current={stepIndex}>
       {STEPS.map((step) => (
         <Step
           title={step.title}
