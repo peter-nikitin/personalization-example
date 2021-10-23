@@ -6,8 +6,9 @@ import { checkMindboxSegment } from "processes/check-mindbox-segment";
 import { Badge, Button, Card, Descriptions } from "antd";
 
 import { FormCardProps } from "./model";
+import { showBanner } from "pages/result-view-conteiner";
 
-export const FormCard = ({ formInfo, showInResult }: FormCardProps) => {
+export const FormCard = ({ formInfo }: FormCardProps) => {
   const { targeting, views } = parseFormInfo(formInfo);
   const [isInTargeting, setIsInTargeting] = useState<boolean>(targeting?.length === 0 );
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -50,7 +51,7 @@ export const FormCard = ({ formInfo, showInResult }: FormCardProps) => {
       size="small"
       key="showINResult"
       disabled={!isInTargeting}
-      onClick={() => showInResult(views.image)}
+      onClick={() => showBanner(views.image)}
     >
       Показать
     </Button>
