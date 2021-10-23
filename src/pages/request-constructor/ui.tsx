@@ -15,7 +15,6 @@ export const GetFormsInfo = () => {
 
   return (
     <div>
-      <Title level={4}>Настройки получения форм</Title>
       <Form layout="vertical" onFinish={submitted}>
         <Form.Item label="Идентификатор в попмеханиках">
           <Input

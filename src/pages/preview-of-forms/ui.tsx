@@ -15,7 +15,6 @@ export const PersonalizationPreview = ({ forms, showResult, nextStep }: FormsPro
 
   return (
     <Space direction="vertical">
-      <Title level={4}>Настроенные формы</Title>
       <TogglePreviewMode
         changeMode={setPreviewMode}
         currentMode={previewMode}
