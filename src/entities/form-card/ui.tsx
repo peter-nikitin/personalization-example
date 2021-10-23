@@ -7,9 +7,9 @@ import { Badge, Button, Card, Descriptions } from "antd";
 
 import { FormCardProps } from "./model";
 
-export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) => {
-  const [isInTargeting, setIsInTargeting] = useState<boolean>(false);
+export const FormCard = ({ formInfo, showInResult }: FormCardProps) => {
   const { targeting, views } = parseFormInfo(formInfo);
+  const [isInTargeting, setIsInTargeting] = useState<boolean>(targeting?.length === 0 );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [segmentState, setSegmentState] = useState<boolean | undefined | null>(
@@ -17,7 +17,6 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
   );
 
   const handleCheckSegment = async () => {
-    nextStep(); 
     if (targeting) {
       const [firstTargetingNode] = targeting;
 
@@ -57,25 +56,45 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
     </Button>
   );
 
+  const hasMindboxTargeting = () => {
+    return (
+      targeting &&
+      targeting.length > 0 &&
+      targeting[0].field === "mindbox_segment"
+    );
+  };
+
   return (
     <Card
       title={formInfo.name}
-      actions={[checkSegmentButton(), showInResultBtn()]}
+      actions={[
+        hasMindboxTargeting() && checkSegmentButton(),
+        showInResultBtn(),
+      ]}
     >
       <Descriptions bordered size="small">
-        <Descriptions.Item label="Тип таргетинга" span={3}>
-          {targeting && targeting[0].field}
-        </Descriptions.Item>
-
-        {targeting && targeting[0].field === "mindbox_segment" && (
+        {hasMindboxTargeting() ? (
           <>
-          <Descriptions.Item label="Должен быть в сегменте" span={3}>
-            {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
-          </Descriptions.Item>
-          <Descriptions.Item label="Что делать, если не нашли клиента" span={3}>
-            {targeting && targeting[0].value.inSegmentByDefault ? "Показывать" : "Не показывать"}
-          </Descriptions.Item>
+            <Descriptions.Item label="Тип таргетинга" span={3}>
+              Сегмент Mindbox
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Должен быть в сегменте" span={3}>
+              {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label="Что делать, если не нашли клиента"
+              span={3}
+            >
+              {targeting && targeting[0].value.inSegmentByDefault
+                ? "Показывать"
+                : "Не показывать"}
+            </Descriptions.Item>
           </>
+        ) : (
+          <Descriptions.Item label="Тип таргетинга" span={3}>
+            Показывать всем
+          </Descriptions.Item>
         )}
         {segmentState !== null && (
           <>
