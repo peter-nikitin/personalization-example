@@ -1,15 +1,18 @@
-import { Space, Typography } from "antd";
+import { Space } from "antd";
 import { FormCard } from "entities/form-card";
 import { TogglePreviewMode } from "features/toggle-preview";
 import { PREVIEW_MODS } from "features/toggle-preview/model";
 import { useState } from "react";
 import { PreviewRaw } from "entities/preview-raw";
 import { FormsProps } from "./model";
+import { useStore } from "effector-react";
+import { $personalizationData } from "entities/personalization-data";
 
 
 
-export const PersonalizationPreview = ({ forms, showResult, nextStep }: FormsProps) => {
-  const { Title } = Typography;
+export const PersonalizationPreview = ({ showResult }: FormsProps) => {
+
+  const forms = useStore($personalizationData);
 
   const [previewMode, setPreviewMode] = useState(PREVIEW_MODS.parsed);
 
@@ -27,7 +30,6 @@ export const PersonalizationPreview = ({ forms, showResult, nextStep }: FormsPro
               key={form.id}
               formInfo={form}
               showInResult={showResult}
-              nextStep={nextStep}
             />
           ))}
         </Space>
