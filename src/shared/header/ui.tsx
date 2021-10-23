@@ -1,6 +1,6 @@
 import { PageHeader } from "antd";
 import { useStore } from "effector-react";
-import { $stepData, prevStep } from "entities/steps-indicator/model";
+import { $stepData, setStep } from "entities/steps-indicator/model";
 import { GetUpdatedData } from "features/get-update-data";
 
 export const Header = () => {
@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <PageHeader
       ghost={false}
-      // onBack={() => prevStep()}
+      onBack={() => setStep(0)}
       title={step.title}
       extra={[<GetUpdatedData />]}
     />
