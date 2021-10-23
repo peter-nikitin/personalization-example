@@ -1,36 +1,22 @@
-import { useState } from "react";
-
 import { Row, Col, PageHeader } from "antd";
 
-import { GetFormsInfo, PersonalizationData } from "pages/request-constructor";
-
-import { ResultView, ShowResult } from "./result-view-conteiner";
-import { StepsIndicator } from "entities/steps-indicator";
-
+import { GetFormsInfo } from "pages/request-constructor";
+import { ResultView } from "./result-view-conteiner";
+import { $stepIndex, StepsIndicator } from "entities/steps-indicator";
 import { PersonalizationPreview } from "./preview-of-forms";
+
 import { Header } from "shared/header";
+
 import { useStore } from "effector-react";
-import { $stepIndex } from "entities/steps-indicator/model";
 
 const PersonalizationTester = () => {
   const stepIndex = useStore($stepIndex);
-
-  const [resultView, setResultView] = useState("");
-
-  const [personalizationData, setPersonalizationData] =
-    useState<PersonalizationData>([]);
-
-  const handleShowResult: ShowResult = (url) => {
-    console.log(url);
-
-    setResultView(url);
-  };
 
   return (
     <>
       <Row>
         <Col flex="330px">
-          <ResultView bannerImageUrl={resultView} />
+          <ResultView />
         </Col>
         <Col flex="3">
           <PageHeader
@@ -45,8 +31,8 @@ const PersonalizationTester = () => {
               <Header />
               {stepIndex === 0 && <GetFormsInfo />}
 
-              {(stepIndex === 1 || stepIndex === 2) && personalizationData && (
-                <PersonalizationPreview showResult={setResultView} />
+              {(stepIndex === 1 || stepIndex === 2) && (
+                <PersonalizationPreview  />
               )}
             </Col>
           </Row>
