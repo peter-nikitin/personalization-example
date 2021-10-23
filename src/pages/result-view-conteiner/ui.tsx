@@ -1,10 +1,13 @@
 import { Skeleton } from "antd";
-import React from "react";
 import "html5-device-mockups/dist/device-mockups.css";
-import { ResultViewContenerProps } from ".";
+import { $resultBanner } from ".";
 import { SimpleInlineBanner } from "entities/result-vews";
+import { useStore } from "effector-react";
 
-export const ResultView = ({ bannerImageUrl }: ResultViewContenerProps) => {
+export const ResultView = () => {
+
+  const bannerUrl = useStore($resultBanner); 
+
   return (
     <div>
       <div className="device-wrapper">
@@ -20,7 +23,7 @@ export const ResultView = ({ bannerImageUrl }: ResultViewContenerProps) => {
           >
             <Skeleton />
 
-            {bannerImageUrl && <SimpleInlineBanner url={bannerImageUrl} />}
+            {bannerUrl && <SimpleInlineBanner url={bannerUrl} />}
           </div>
           <div className="button">
             {/* <!-- You can hook the "home button" to some JavaScript events or just remove it --> */}
