@@ -1,9 +1,10 @@
-import { createEvent, createStore } from "effector";
+import { createEvent, createStore, sample } from "effector";
+import { getDataFx } from "entities/personalization-data";
 import { FormsEntity } from "processes/get-personalization-data";
 
 export type PersonalizationData = FormsEntity[];
 
-export type FormState = {
+export type RequestConstructor = {
   id: string;
   domain: string;
 };
@@ -13,13 +14,31 @@ export type GetFormsInfoProps = {
   nextStep: () => void;
 };
 
-export const setField = createEvent<{ [k: string]: string }>();
-export const $requestUrl = createStore({});
+export const submitted = createEvent(); 
 
-$requestUrl.on(
+export const setField = createEvent<{ [k: string]: string }>();
+export const $requestConstructorState = createStore<RequestConstructor>({
+  domain: "",
+  id: "",
+});
+
+$requestConstructorState.on(
   setField,
   (state, { field, value }: { [k: string]: string }) => ({
     ...state,
     [field]: value,
   })
 );
+
+sample({
+  clock: submitted,
+  source: $requestConstructorState,
+  target: getDataFx,
+});
+
+ export const handleInputChange = setField.prepend(
+   (event: React.ChangeEvent<HTMLInputElement>) => ({
+     field: event.target.name,
+     value: event.target.value,
+   })
+ );
