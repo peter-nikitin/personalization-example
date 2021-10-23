@@ -8,5 +8,8 @@ export const getData = async (clientId: string, domain: string) => {
 
   const { forms } = result.data;
 
-  return forms;
+  if (forms) {
+    return forms;
+  }
+  return []; 
 };
