@@ -9,9 +9,11 @@ import { StepsIndicator } from "entities/steps-indicator";
 
 import { PersonalizationPreview } from "./preview-of-forms";
 import { Header } from "shared/header";
+import { useStore } from "effector-react";
+import { $stepIndex } from "entities/steps-indicator/model";
 
 const PersonalizationTester = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const stepIndex = useStore($stepIndex);
 
   const [resultView, setResultView] = useState("");
 
@@ -37,20 +39,15 @@ const PersonalizationTester = () => {
           />
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
             <Col flex="330px">
-              <StepsIndicator currentStep={currentStep} />
+              <StepsIndicator />
             </Col>
             <Col flex="3">
               <Header />
-              {currentStep === 0 && <GetFormsInfo />}
+              {stepIndex === 0 && <GetFormsInfo />}
 
-              {(currentStep === 1 || currentStep === 2) &&
-                personalizationData && (
-                  <PersonalizationPreview
-                    forms={personalizationData}
-                    showResult={handleShowResult}
-                    nextStep={() => setCurrentStep(2)}
-                  />
-                )}
+              {(stepIndex === 1 || stepIndex === 2) && personalizationData && (
+                <PersonalizationPreview showResult={setResultView} />
+              )}
             </Col>
           </Row>
         </Col>
