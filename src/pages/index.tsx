@@ -9,7 +9,6 @@ import { StepsIndicator } from "entities/steps-indicator";
 
 import { PersonalizationPreview } from "./preview-of-forms";
 
-
 const PersonalizationTester = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
@@ -40,12 +39,7 @@ const PersonalizationTester = () => {
               <StepsIndicator currentStep={currentStep} />
             </Col>
             <Col flex="3">
-              {currentStep === 0 && (
-                <GetFormsInfo
-                  updateFormsInfo={setPersonalizationData}
-                  nextStep={() => setCurrentStep(1)}
-                />
-              )}
+              {currentStep === 0 && <GetFormsInfo />}
 
               {(currentStep === 1 || currentStep === 2) &&
                 personalizationData && (
