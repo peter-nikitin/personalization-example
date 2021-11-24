@@ -1,15 +1,16 @@
 import { FormsEntity } from "processes/get-personalization-data/model";
 
-
-
 export const parseFormInfo = (form: FormsEntity) => {
-  const targeting = form.new_targeting.filter.nodes;
+  let views;
 
-  const views = form.settings_splits![0].settings;
+  const targeting = form.new_targeting?.filter?.nodes;
+  
+  if (form && form.settings_splits && form.settings_splits[0]) {
+    views = form.settings_splits[0].settings;
+  }
 
   return {
     targeting,
     views,
   };
 };
-
