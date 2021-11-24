@@ -14,7 +14,7 @@ const prepareMock = (answer: any) => {
 test("should return array of forms", async () => {
   prepareMock(mockAnswer);
 
-  const forms = await getData("112", "myUrl");
+  const forms = await getData({ id: "112", domain: "myUrl" });
 
   expect(forms).toStrictEqual(mockAnswer.forms);
 });
@@ -22,7 +22,8 @@ test("should return array of forms", async () => {
 test("should return empty array", async () => {
   prepareMock({ ...mockAnswer, forms: [] });
 
-  const forms = await getData("112", "myUrl");
+  const forms = await getData({ id: "112", domain: "myUrl" });
+
 
   expect(forms).toStrictEqual([]);
 });
@@ -32,7 +33,7 @@ test("should return undefined if no forms field", async () => {
 
   prepareMock({ ...restFields });
 
-  const result = await getData("112", "myUrl");
+  const result = await getData({ id: "112", domain: "myUrl" });
 
-  expect(result).toStrictEqual(undefined);
+  expect(result).toStrictEqual([]);
 });
