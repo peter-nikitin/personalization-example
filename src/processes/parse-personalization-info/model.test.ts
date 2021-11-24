@@ -1,4 +1,4 @@
-import { parseFormInfo } from "features/parse-personalization-info";
+import { parseFormInfo } from "./";
 import mockAnswer from "shared/config/mockFormsAnswer.json";
 
 test("should return parsed form info", () => {
