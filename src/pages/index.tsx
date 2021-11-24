@@ -1,34 +1,22 @@
-import { useState } from "react";
-
 import { Row, Col, PageHeader } from "antd";
 
-import { GetFormsInfo, PersonalizationData } from "pages/request-constructor";
-
-import { ResultView, ShowResult } from "./result-view-conteiner";
-import { StepsIndicator } from "entities/steps-indicator";
-
+import { GetFormsInfo } from "pages/request-constructor";
+import { ResultView } from "./result-view-conteiner";
+import { $stepIndex, StepsIndicator } from "entities/steps-indicator";
 import { PersonalizationPreview } from "./preview-of-forms";
 
+import { Header } from "shared/header";
+
+import { useStore } from "effector-react";
 
 const PersonalizationTester = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
-
-  const [resultView, setResultView] = useState("");
-
-  const [personalizationData, setPersonalizationData] =
-    useState<PersonalizationData>([]);
-
-  const handleShowResult: ShowResult = (url) => {
-    console.log(url);
-
-    setResultView(url);
-  };
+  const stepIndex = useStore($stepIndex);
 
   return (
     <>
       <Row>
         <Col flex="330px">
-          <ResultView bannerImageUrl={resultView} />
+          <ResultView />
         </Col>
         <Col flex="3">
           <PageHeader
@@ -37,24 +25,15 @@ const PersonalizationTester = () => {
           />
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
             <Col flex="330px">
-              <StepsIndicator currentStep={currentStep} />
+              <StepsIndicator />
             </Col>
             <Col flex="3">
-              {currentStep === 0 && (
-                <GetFormsInfo
-                  updateFormsInfo={setPersonalizationData}
-                  nextStep={() => setCurrentStep(1)}
-                />
-              )}
+              <Header />
+              {stepIndex === 0 && <GetFormsInfo />}
 
-              {(currentStep === 1 || currentStep === 2) &&
-                personalizationData && (
-                  <PersonalizationPreview
-                    forms={personalizationData}
-                    showResult={handleShowResult}
-                    nextStep={() => setCurrentStep(2)}
-                  />
-                )}
+              {(stepIndex === 1 || stepIndex === 2) && (
+                <PersonalizationPreview  />
+              )}
             </Col>
           </Row>
         </Col>
