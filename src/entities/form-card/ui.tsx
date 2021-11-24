@@ -7,7 +7,11 @@ import { Badge, Button, Card, Descriptions } from "antd";
 
 import { FormCardProps } from "./model";
 
-export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) => {
+export const FormCard = ({
+  formInfo,
+  showInResult,
+  nextStep,
+}: FormCardProps) => {
   const [isInTargeting, setIsInTargeting] = useState<boolean>(false);
   const { targeting, views } = parseFormInfo(formInfo);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,7 +21,7 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
   );
 
   const handleCheckSegment = async () => {
-    nextStep(); 
+    nextStep();
     if (targeting) {
       const [firstTargetingNode] = targeting;
 
@@ -45,17 +49,18 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
       Проверить сегмент
     </Button>
   );
-  const showInResultBtn = () => (
-    <Button
-      type="link"
-      size="small"
-      key="showINResult"
-      disabled={!isInTargeting}
-      onClick={() => showInResult(views.image)}
-    >
-      Показать
-    </Button>
-  );
+  const showInResultBtn = () =>
+    views && (
+      <Button
+        type="link"
+        size="small"
+        key="showINResult"
+        disabled={!isInTargeting}
+        onClick={() => showInResult(views.image)}
+      >
+        Показать
+      </Button>
+    );
 
   return (
     <Card
@@ -69,12 +74,17 @@ export const FormCard = ({ formInfo, showInResult, nextStep }: FormCardProps) =>
 
         {targeting && targeting[0].field === "mindbox_segment" && (
           <>
-          <Descriptions.Item label="Должен быть в сегменте" span={3}>
-            {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
-          </Descriptions.Item>
-          <Descriptions.Item label="Что делать, если не нашли клиента" span={3}>
-            {targeting && targeting[0].value.inSegmentByDefault ? "Показывать" : "Не показывать"}
-          </Descriptions.Item>
+            <Descriptions.Item label="Должен быть в сегменте" span={3}>
+              {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label="Что делать, если не нашли клиента"
+              span={3}
+            >
+              {targeting && targeting[0].value.inSegmentByDefault
+                ? "Показывать"
+                : "Не показывать"}
+            </Descriptions.Item>
           </>
         )}
         {segmentState !== null && (
