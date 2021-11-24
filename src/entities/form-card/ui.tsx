@@ -69,24 +69,26 @@ export const FormCard = ({
     >
       <Descriptions bordered size="small">
         <Descriptions.Item label="Тип таргетинга" span={3}>
-          {targeting && targeting[0].field}
+          {targeting && targeting.length && targeting[0].field}
         </Descriptions.Item>
 
-        {targeting && targeting[0].field === "mindbox_segment" && (
-          <>
-            <Descriptions.Item label="Должен быть в сегменте" span={3}>
-              {targeting && targeting[0].value.inSegment ? "Да" : "Нет"}
-            </Descriptions.Item>
-            <Descriptions.Item
-              label="Что делать, если не нашли клиента"
-              span={3}
-            >
-              {targeting && targeting[0].value.inSegmentByDefault
-                ? "Показывать"
-                : "Не показывать"}
-            </Descriptions.Item>
-          </>
-        )}
+        {targeting &&
+          targeting.length &&
+          targeting[0].field === "mindbox_segment" && (
+            <>
+              <Descriptions.Item label="Должен быть в сегменте" span={3}>
+                {targeting[0].value.inSegment ? "Да" : "Нет"}
+              </Descriptions.Item>
+              <Descriptions.Item
+                label="Что делать, если не нашли клиента"
+                span={3}
+              >
+                {targeting[0].value.inSegmentByDefault
+                  ? "Показывать"
+                  : "Не показывать"}
+              </Descriptions.Item>
+            </>
+          )}
         {segmentState !== null && (
           <>
             <Descriptions.Item label="Статус сегмента клиента" span={3}>
